@@ -1,7 +1,10 @@
 # GDS-Project
 
 1. Project Title and Description
-2. Installation Instructions
+   Movie Recommendation System
+
 3. Usage Guide
+   
 4. Contributors
-5. Acknowledgments
+   - Sijjil Khan
+   - Humayun Hasan
