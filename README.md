@@ -1,7 +1,4 @@
-# GDS-Project
-
-1. Project Title and Description
-   Movie Recommendation System
+# Movie Recommendation System
 
 3. Usage Guide
    - Want to get the Movie Recommendations based on user id?
