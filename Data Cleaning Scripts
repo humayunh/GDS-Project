@@ -1,46 +1,40 @@
-#Data Cleaning Scripts
-
 import pandas as pd
 
-# Loading the ratings data
-ratings = pd.read_csv('path_to_ratings.csv')
+def clean_movies(df):
+    # Strip leading/trailing whitespace from all string columns
+    df['title'] = df['title'].str.strip()
+    df['genres'] = df['genres'].str.strip()
+    
+    # Replace any problematic characters in 'title' (e.g., quotes)
+    df['title'] = df['title'].str.replace('"', '', regex=False)
+    
+    # Handle missing genres
+    df['genres'] = df['genres'].replace({'': 'Unknown'})
 
-# Converting timestamp to a human-readable date
-ratings['date'] = pd.to_datetime(ratings['timestamp'], unit='s')
+    return df
 
-# Dropping the original timestamp column
-ratings.drop('timestamp', axis=1, inplace=True)
+def clean_ratings(df):
+    # Convert data types
+    df['userId'] = df['userId'].astype(int)
+    df['movieId'] = df['movieId'].astype(int)
+    df['rating'] = df['rating'].astype(float)
+    
+    # Convert UNIX timestamp to a more readable format (optional)
+    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='s')
+    
+    # Drop any rows with missing values
+    df.dropna(inplace=True)
+    
+    return df
 
-# Removing any duplicates
-ratings.drop_duplicates(subset=['userId', 'movieId'], keep='first', inplace=True)
+# Load the datasets
+ratings = pd.read_csv('C:/Users/T470/OneDrive/Documents/Semester 8/GDS/Project/archive (2)/ratings.csv')
+movies = pd.read_csv('C:/Users/T470/OneDrive/Documents/Semester 8/GDS/Project/archive (2)/movies.csv')
 
-# Ensuring ratings are within the valid range
-ratings = ratings[(ratings['rating'] >= 0.5) & (ratings['rating'] <= 5)]
-
-# Saving the cleaned data
-ratings.to_csv('cleaned_ratings.csv', index=False)
-
-#For Movies
-
-import pandas as pd
-
-# Loading the movies data
-movies = pd.read_csv('/mnt/data/movies.csv')
-
-# Extracting year from the title and create a new column
-movies['year'] = movies['title'].str.extract(r'\((\d{4})\)')
-movies['title'] = movies['title'].str.replace(r'(\s*\(\d{4}\))', '').str.strip()
-
-# Splitting genres into a list
-movies['genres'] = movies['genres'].apply(lambda x: x.split('|') if x != '(no genres listed)' else [])
-
-# Checking for and handle missing data
-print(movies.isnull().sum())  # This will print the count of missing values in each column
-
-# If there are any missing years or other important fields, we will fill them or drop the rows:
-# movies.dropna(subset=['year'], inplace=True)  # Example to drop rows where 'year' is NaN
+# Clean the data using defined functions
+ratings = clean_ratings(ratings)
+movies = clean_movies(movies)
 
 # Save the cleaned data
-movies.to_csv('/mnt/data/cleaned_movies.csv', index=False)
-
-
+ratings.to_csv('C:/Users/T470/OneDrive/Documents/Semester 8/GDS/Project/archive (2)/cleaned_ratings.csv', index=False)
+movies.to_csv('C:/Users/T470/OneDrive/Documents/Semester 8/GDS/Project/archive (2)/cleaned_movies.csv', index=False)
