@@ -21,7 +21,7 @@
      - Step 2: Click on the Dropdown and Select 'Path Analysis'
      - Step 3: Click on the 'Load Graph' button
      - Finally: You will be displayed with a arrowed graph of connected users based on their taste in movies!
-   - You can toggle the users to stretch and see their links too!
+     - You can toggle the users to stretch and see their links too!
 
    - Want to visualize Community Detection and the movies building communities based on their genres?
      - Step 1: Go to the 'Graphs' page
