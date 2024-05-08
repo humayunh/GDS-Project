@@ -1,6 +1,6 @@
 # Movie Recommendation System
 
-3. Usage Guide
+1. Usage Guide
    - Want to get the Movie Recommendations based on user id?
      - Step 1: Be on the 'Home' Page
      - Step 2: Type in the User Id and press the 'Get Recommendations Button'
@@ -30,6 +30,6 @@
      - You can zoom in and play around observing a variety of communities!
 
 
-5. Contributors
+2. Contributors
    - Sijjil Khan
    - Humayun Hasan
