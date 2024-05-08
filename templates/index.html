@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Recommendations</title>
+  <link rel="stylesheet" href="static/css/styles.css">
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+</head>
+<body>
+  <h1>Movie Recommendation System</h1>
+
+  <!-- Navigation Tabs -->
+  <ul class="nav-tabs">
+    <li onclick="showSection('home')">Home</li>
+    <li onclick="showSection('graphs')">Graphs</li>
+  </ul>
+
+
+  <div id="home-section">
+    <div id="recommendation-form">
+      <input id="user-id" type="text" placeholder="Enter user ID">
+      <button onclick="fetchRecommendations()">Get Recommendations</button>
+    </div>
+    <div id="recommendations"></div>
+  </div>
+
+
+  <div id="graphs-section" style="display: none;">
+    <select id="graph-type">
+
+        <option value="centrality">User Centrality</option>
+        <option value="path-analysis">Path Analysis</option>
+        <option value="community-detection">Community Detection</option>
+
+    </select>
+    <button onclick="fetchGraphData()">Load Graph</button>
+    <div id="loading" style="display:none;">Loading...</div>
+    <div id="network"></div>
+    <canvas id="graphCanvas"></canvas>
+  </div>
+
+  <script src="static/js/graph.js"></script>
+  <script src="static/js/app.js"></script>
+  <script src="static/js/navigation.js"></script>
+</body>
+</html>
